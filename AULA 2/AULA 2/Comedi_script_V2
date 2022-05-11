@@ -1,0 +1,23 @@
+#!/bin/bash
+
+
+if [ $(id -u) = "0" ]; then
+        echo "loading rtai modules"
+        /sbin/insmod /usr/realtime/modules/rtai_hal.ko
+        /sbin/insmod /usr/realtime/modules/rtai_lxrt.ko
+        /sbin/insmod /usr/realtime/modules/rtai_sem.ko
+        /sbin/insmod /usr/realtime/modules/rtai_mbx.ko
+        /sbin/insmod /usr/realtime/modules/rtai_fifos.ko
+        /sbin/insmod /usr/realtime/modules/rtai_tbx.ko
+        /sbin/insmod /usr/realtime/modules/rtai_bits.ko
+        /sbin/insmod /usr/realtime/modules/rtai_mq.ko
+        /sbin/insmod /usr/realtime/modules/rtai_shm.ko
+        /sbin/insmod /usr/realtime/modules/rtai_tasklets.ko
+        /sbin/insmod /usr/realtime/modules/rtai_netrpc.ko
+	
+chmod 666 /dev/comedi0
+
+else
+        echo "Only superuser can load the Comedi driver."
+fi
+
